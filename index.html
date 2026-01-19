@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RISKSNIPER - The Revival of 1998</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* =========================
+       EDIT DI SINI – BACKGROUND UTAMA
+       ========================= */
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #f5f5f5;
+      line-height: 1.6;
+      background:
+        linear-gradient(rgba(5,5,16,0.55), rgba(5,5,16,0.85)),
+        url("rs-back.png") center / cover no-repeat fixed;
+    }
+
+    /* ================= HEADER ================= */
+    header {
+      padding: 3rem 1.5rem;
+      text-align: center;
+      background:
+        linear-gradient(rgba(5,5,16,0.6), rgba(5,5,16,0.85)),
+        url("rs-front.png") center / cover no-repeat;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .brand-logo {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 1rem;
+      border-radius: 0.75rem;
+      border: 2px solid rgba(255,255,255,0.6);
+      background: #000;
+      overflow: hidden;
+    }
+
+    .brand-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .brand-title {
+      font-weight: 800;
+      letter-spacing: 0.25em;
+      font-size: 1.6rem;
+    }
+
+    .brand-subtitle {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      margin-top: 0.25rem;
+    }
+
+    /* ================= MAIN ================= */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid rgba(255,255,255,0.15);
+      padding-bottom: 0.5rem;
+    }
+
+    /* ================= SONG LIST ================= */
+    .songs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .song-card {
+      background: rgba(255,255,255,0.08);
+      border-radius: 0.75rem;
+      padding: 1rem 1.25rem;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .song-link {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    .song-link:hover {
+      text-decoration: underline;
+    }
+
+    .song-info {
+      font-size: 0.8rem;
+      opacity: 0.75;
+      margin-top: 0.25rem;
+    }
+
+    /* ================= POSTER ================= */
+    .poster-section {
+      margin-top: 4rem;
+      padding: 4rem 1.5rem;
+      text-align: center;
+      background:
+        linear-gradient(rgba(5,5,16,0.7), rgba(5,5,16,0.9)),
+        url("rs-poster.png") center / cover no-repeat;
+      border-radius: 1rem;
+    }
+
+    /* ================= FOOTER ================= */
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      background: rgba(5,5,16,0.6);
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand-logo">
+    <img src="logo-risksniper.png" alt="Logo RiskSniper">
+  </div>
+  <div class="brand-title">RISKSNIPER</div>
+  <div class="brand-subtitle">The Revival of RiskSniper • Since 1998</div>
+</header>
+
+<main>
+
+  <section>
+    <h2 class="section-title">Lagu-Lagu Kami</h2>
+    <div class="songs" id="songsContainer"></div>
+  </section>
+
+  <section class="poster-section">
+    <h2 class="section-title">Born 1998 — Still Loud</h2>
+    <p>RiskSniper • Rock • Alternative</p>
+  </section>
+
+</main>
+
+<footer>
+  © <span id="year"></span> RISKSNIPER. All rights reserved.
+</footer>
+
+<script>
+  /* =========================
+     EDIT DI SINI – DAFTAR LAGU
+     ========================= */
+  const songs = [
+    { title: "Batas Antara Malam dan Pagi", info: "Official Video", youtubeId: "lThU2oH98Wo" },
+    { title: "Serana", info: "Official Release", youtubeId: "QGQ5x0g4IIQ" },
+    { title: "Mungkin (Maafkan Aku Yang T'lah Terjadi)", info: "Official Audio", youtubeId: "bIPg2zdslfs" },
+    { title: "Untuk Sang Juara", info: "Official Audio", youtubeId: "PHsq_XdUV2Y" },
+    { title: "Revolusi Jiwa", info: "Official Audio", youtubeId: "5ZpgUKkNqb8" },
+    { title: "Makna Awal", info: "Official Audio", youtubeId: "ba16Kq7uEHk" },
+    { title: "Kau Lah", info: "Official Audio", youtubeId: "KizFjk-ugGs" },
+    { title: "EWITA (Energize WiTh All)", info: "Official Audio", youtubeId: "FUnbmiDWW98" },
+    { title: "Potret Srikandi", info: "Official Audio", youtubeId: "1O97ZDR3FyI" },
+    { title: "Sulit", info: "Official Audio", youtubeId: "6Tnh4B9fg_k" },
+    { title: "Tetap Disampingmu", info: "Official Audio", youtubeId: "at4-oMGeLzI" },
+    { title: "Amnesia (Anggap Saja)", info: "Official Audio", youtubeId: "PuhwFpABFSs" },
+    { title: "Ingin", info: "Official Audio", youtubeId: "bbFsqDEA4Tk" },
+    { title: "Hari Ini", info: "Official Audio", youtubeId: "87x-pLuYeGw" },
+    { title: "Jeda Senja", info: "Official Audio", youtubeId: "Sc4oB5FeLOM" },
+    { title: "Mengenangmu", info: "Official Audio", youtubeId: "7mw4j6vkDkw" },
+    { title: "Dek", info: "Official Audio", youtubeId: "REetn-KRRtQ" },
+    { title: "Dompet Baru Otak Lama", info: "Official Audio", youtubeId: "3yvQAqdRsk0" }
+  ];
+
+  const container = document.getElementById("songsContainer");
+
+  songs.forEach(song => {
+    const card = document.createElement("div");
+    card.className = "song-card";
+    card.innerHTML = `
+      <a class="song-link"
+         href="https://www.youtube.com/watch?v=${song.youtubeId}"
+         target="_blank"
+         rel="noopener">
+        ▶ ${song.title}
+      </a>
+      <div class="song-info">${song.info}</div>
+    `;
+    container.appendChild(card);
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
